@@ -1,0 +1,34 @@
+Installation of Jenkins on Linux
+1. Become root user
+	$ sudo su - <press enter>
+	<give root password if any>
+2. Update system
+	# yum update -y
+3. Install Jenkins packages for RedHat
+	#wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+	#rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+4. Install dependancies
+	#yum install epel-release # repository that provides 'daemonize'
+	If ur using amazone linux then
+	#amazon-linux-extras install epel -y
+5. Install Jdk
+	#yum install java-11-openjdk -y
+	If ur using Amazon Linux
+	#amazon-linux-extras install java-openjdk11 -y
+6.Install Jenkins
+	# yum install jenkins -y
+7. Restart the services
+	# systemctl status jenkins
+	# systemctl start jenkins
+8. Open browser and search
+	If using localsystem
+		localhost:8080
+	If ur using ec2 or other server then
+		<IP address of server>:8080
+9. It will ask for password and also will share file name for password, copy that path and paste in system
+	# cat <copied file path>
+	Copy password and paste it on browser
+10. click on suggested plugins or u can skip also.
+11. Create first admin user and continoue
+12. Review Instance Configuration and click on save and finish and then click on start using jenkins.
+

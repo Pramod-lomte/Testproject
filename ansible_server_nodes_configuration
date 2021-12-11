@@ -1,0 +1,43 @@
+Configure Ansible Server and Nodes(Rolls)
+Steps:-
+1. Install Ansible Package 
+	# sudo yum install ansible -y
+2. Install Dependancies
+	# yum install git python python-level python-pip openssl -y
+3. Edit Ansible host file
+	# vi /etc/ansible/hosts
+	Uncomment following lines (Removing #)
+		#inventory=/etc/ansible/hosts
+		#sudo-user=root
+	//Save and exit (:wq)//
+4. Create one user as ansible (do this in all systems)
+	# sudo useradd ansible
+	# sudo passwd ansible <Provide a Password>
+5. Open sudo file to give priviledges to ansible (do this in all systems)
+	# visudo
+	  //add following lines//
+	root ALL=(ALL)	ALL
+	ansible	ALL=(ALL)	NOPASSWD:ALL
+	//Save and exit (:wq)//
+6. Switch to ansible user andtTry to install httpd package
+	# su ansible
+	$ sudo yum install httpd -y
+7. Configure sshd file (do this in all systems)
+	$ sudo vi /etc/ssh/sshd-config
+	//do follwing changes//
+	#PermitRootLogin yes (Remove #)
+	#PasswordAuthentication yes (Remove #)
+	PasswordAuthentication no (Place #)
+8.take the ssh of any one of node
+	$ ssh <Node ip>
+	   //it will ask for password <provide ansible password>//
+9. Generate public key in ansible server as ansible user
+	$ ssh-keygen
+	   <enter 3 times>
+10. copy public key on both nodes
+	$ssh-copy-id ansible@<node 1 Private ip>
+	$ssh-copy-id ansible@<node 2 Private ip>	
+	//Now trt to take ssh it will login without password into both nodes//
+
+
+
